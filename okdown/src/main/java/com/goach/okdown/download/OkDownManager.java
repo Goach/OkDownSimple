@@ -50,22 +50,22 @@ public class OkDownManager {
     /**
      * 链式开启下载
      *
-     * @param OkDownInfo
+     * @param okDownListener
      * @return
      */
-    public OkDownManager start(Context ctx,OkDownListener OkDownInfo) {
-        execute(ctx,downloadData, OkDownInfo);
+    public OkDownManager start(Context ctx,OkDownListener okDownListener) {
+        execute(ctx,downloadData, okDownListener);
         return OkDownManager;
     }
 
     /****
      * 根据URL开始下载
      * @param downloadData
-     * @param OkDownInfo
+     * @param okDownListener
      * @return
      */
-    public OkDownManager start(Context ctx,OkDownInfo downloadData,OkDownListener OkDownInfo){
-        execute(ctx,downloadData,OkDownInfo);
+    public OkDownManager start(Context ctx,OkDownInfo downloadData,OkDownListener okDownListener){
+        execute(ctx,downloadData,okDownListener);
         return OkDownManager;
     }
 
@@ -218,11 +218,11 @@ public class OkDownManager {
      * 注册监听
      *
      * @param downloadData
-     * @param OkDownInfo
+     * @param okDownListener
      */
-    public synchronized void setOnOkDownInfo(OkDownInfo downloadData, OkDownListener OkDownInfo) {
+    public synchronized void setOnOkDownInfo(OkDownInfo downloadData, OkDownListener okDownListener) {
         downloadDataMap.put(downloadData.getUrl(), downloadData);
-        callbackMap.put(downloadData.getUrl(), OkDownInfo);
+        callbackMap.put(downloadData.getUrl(), okDownListener);
     }
 
 
