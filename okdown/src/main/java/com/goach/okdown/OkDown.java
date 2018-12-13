@@ -34,9 +34,9 @@ public class OkDown {
             return this;
         }
         public OkDownManager build() {
-            OkDownManager downloadManager = OkDownManager.getInstance();
-            downloadManager.init(url,path,name,childTaskCount);
-            return downloadManager;
+            OkDownManager okDownManager = OkDownManager.getInstance();
+            okDownManager.init(url,path,name,childTaskCount);
+            return okDownManager;
         }
 
     }

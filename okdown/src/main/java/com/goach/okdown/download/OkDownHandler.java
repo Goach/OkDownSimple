@@ -108,7 +108,7 @@ public class OkDownHandler {
                             if (isNeedReset) {
                                 isNeedReset = false;
                                 //TODO 请求重新设置
-                                //DownloadManager.getInstance(context).innerRestart(url);
+                                //OkDownManager.getInstance(context).innerRestart(url);
                             }
                         }
                     }
@@ -161,9 +161,9 @@ public class OkDownHandler {
         }
     });
 
-    public OkDownHandler(Context context, OkDownInfo downloadData, OkDownListener downloadCallback) {
+    public OkDownHandler(Context context, OkDownInfo downloadData, OkDownListener OkDownInfo) {
         this.mCtx = context;
-        this.mOkDownListener = downloadCallback;
+        this.mOkDownListener = OkDownInfo;
 
         this.url = downloadData.getUrl();
         this.path = downloadData.getPath();

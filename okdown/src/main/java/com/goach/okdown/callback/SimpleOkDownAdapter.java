@@ -13,12 +13,12 @@ public abstract class SimpleOkDownAdapter implements OkDownListener {
     }
 
     @Override
-    public void onProgress(OkDownInfo info, float progress) {
+    public void onProgress(float progress) {
 
     }
 
     @Override
-    public void onError(OkDownInfo info, Exception e) {
+    public void onError(Exception e) {
 
     }
 
