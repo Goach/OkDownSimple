@@ -152,9 +152,9 @@ public class OkDownManager {
     /***
      * 下载
      * @param downloadData
-     * @param OkDownInfo
+     * @param okDownListener
      */
-    private synchronized void execute(Context ctx,OkDownInfo downloadData,OkDownListener OkDownInfo){
+    private synchronized void execute(Context ctx,OkDownInfo downloadData,OkDownListener okDownListener){
         if(progressHandlerMap.get(downloadData.getUrl()) != null){
             return;
         }
@@ -163,19 +163,19 @@ public class OkDownManager {
             downloadData.setChildTaskCount(1);
         }
 
-        OkDownHandler progressHandler = new OkDownHandler(ctx, downloadData, OkDownInfo);
+        OkDownHandler progressHandler = new OkDownHandler(ctx, downloadData, okDownListener);
         FileTask fileTask = new FileTask(ctx, downloadData, progressHandler.getHandler());
         progressHandler.setFileTask(fileTask);
 
         downloadDataMap.put(downloadData.getUrl(),downloadData);
-        callbackMap.put(downloadData.getUrl(),OkDownInfo);
+        callbackMap.put(downloadData.getUrl(),okDownListener);
         fileTaskMap.put(downloadData.getUrl(),fileTask);
         progressHandlerMap.put(downloadData.getUrl(),progressHandler);
 
         ThreadPool.getInstance().getThreadPoolExecutor().execute(fileTask);
 
         if(ThreadPool.getInstance().getThreadPoolExecutor().getActiveCount() == ThreadPool.getInstance().getCorePoolSize()){
-            OkDownInfo.onWait(downloadDataMap.get(downloadData.getUrl()));
+            okDownListener.onWait(downloadDataMap.get(downloadData.getUrl()));
         }
 
     }
