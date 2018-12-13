@@ -22,18 +22,18 @@ public class OkDownManager {
     private Map<String, OkDownListener> callbackMap = new HashMap<>();//保存任务回调
     private Map<String, FileTask> fileTaskMap = new HashMap<>();//保存下载线程
 
-    private static volatile OkDownManager OkDownManager;
+    private static volatile OkDownManager okDownManager;
     private OkDownInfo downloadData;
 
     public static OkDownManager getInstance(){
-        if(OkDownManager == null){
+        if(okDownManager == null){
             synchronized (OkDownManager.class){
-                if(OkDownManager == null){
-                    OkDownManager = new OkDownManager();
+                if(okDownManager == null){
+                    okDownManager = new OkDownManager();
                 }
             }
         }
-        return OkDownManager;
+        return okDownManager;
     }
 
     private OkDownManager(){}
@@ -55,7 +55,7 @@ public class OkDownManager {
      */
     public OkDownManager start(Context ctx,OkDownListener okDownListener) {
         execute(ctx,downloadData, okDownListener);
-        return OkDownManager;
+        return okDownManager;
     }
 
     /****
@@ -66,7 +66,7 @@ public class OkDownManager {
      */
     public OkDownManager start(Context ctx,OkDownInfo downloadData,OkDownListener okDownListener){
         execute(ctx,downloadData,okDownListener);
-        return OkDownManager;
+        return okDownManager;
     }
 
     /**
@@ -76,7 +76,7 @@ public class OkDownManager {
      */
     public OkDownManager start(Context ctx,String url) {
         execute(ctx,downloadDataMap.get(url), callbackMap.get(url));
-        return OkDownManager;
+        return okDownManager;
     }
 
     /**
